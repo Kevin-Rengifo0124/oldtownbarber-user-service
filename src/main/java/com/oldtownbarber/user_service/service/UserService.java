@@ -1,19 +1,21 @@
 package com.oldtownbarber.user_service.service;
 
+import com.oldtownbarber.user_service.dto.request.UserRequestDTO;
+import com.oldtownbarber.user_service.dto.request.UserUpdateDTO;
+import com.oldtownbarber.user_service.dto.response.UserResponseDTO;
 import com.oldtownbarber.user_service.exception.UserException;
-import com.oldtownbarber.user_service.model.User;
 
 import java.util.List;
 
 public interface UserService {
 
-    User createUser(User user);
+    UserResponseDTO createUser(UserRequestDTO userRequestDTO);
 
-    User getUserById(Long id) throws UserException;
+    UserResponseDTO getUserById(Long id) throws UserException;
 
-    List<User> getAllUsers();
+    List<UserResponseDTO> getAllUsers();
 
-    User updateUser(Long id, User user) throws UserException;
+    UserResponseDTO updateUser(Long id, UserUpdateDTO userUpdateDTO) throws UserException;
 
     void deleteUser(Long id) throws UserException;
 
