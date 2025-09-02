@@ -1,5 +1,6 @@
 package com.oldtownbarber.user_service.controller;
 
+import com.oldtownbarber.user_service.exception.UserException;
 import com.oldtownbarber.user_service.model.User;
 import com.oldtownbarber.user_service.repository.UserRepository;
 import jakarta.validation.Valid;
@@ -33,7 +34,7 @@ public class UserController {
             return optionalUser.get();
         }
 
-        throw new Exception("Usuario no encontrado");
+        throw new UserException("Usuario no encontrado");
     }
 
     @PutMapping("/api/users/{id}")
@@ -41,7 +42,7 @@ public class UserController {
         Optional<User> optionalUser = userRepository.findById(id);
 
         if (optionalUser.isEmpty()) {
-            throw new Exception("Usuario no encontrado con id" + id);
+            throw new UserException("Usuario no encontrado con id" + id);
         }
 
         User existingUser = optionalUser.get();
@@ -58,7 +59,7 @@ public class UserController {
         Optional<User> optionalUser = userRepository.findById(id);
 
         if (optionalUser.isEmpty()) {
-            throw new Exception("Usuario no existe con id" + id);
+            throw new UserException("Usuario no existe con id" + id);
         }
 
         userRepository.deleteById(optionalUser.get().getId());
